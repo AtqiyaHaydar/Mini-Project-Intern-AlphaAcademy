@@ -1,3 +1,7 @@
+Nama : Atqiya Haydar Luqman
+Asal Instansi : Institut Teknologi Bandung
+Divisi : Front End
+
 ## MiniProject - Book Collection Application
 
 MiniProject is an application that allows users to create and manage collections of books online using the Google Books API. With a user-friendly interface, MiniProject enables users to easily add, edit, and remove books from their collections.
