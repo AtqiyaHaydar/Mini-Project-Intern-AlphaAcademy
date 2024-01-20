@@ -13,12 +13,14 @@ import {
 import { usePathname } from "next/navigation"
 import BarIcon from "./icons/BarIcon"
 import { Separator } from "./ui/separator"
+import { UserButton } from "@clerk/nextjs"
 
 const MobileNav = () => {
   const pathname = usePathname()
 
   return (
-    <div className="md:hidden">
+    <div className="md:hidden flex flex-row gap-6 items-center justify-center">
+      <UserButton />
       <Sheet>
         <SheetTrigger>
           <BarIcon />
