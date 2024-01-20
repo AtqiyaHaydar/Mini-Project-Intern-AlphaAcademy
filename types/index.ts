@@ -18,3 +18,12 @@ export interface IBookCardProps {
   description: string
   thumbnail: string
 }
+
+export interface IBookCardState {
+  author: string
+  title: string
+  categories: string
+  description: string
+  thumbnail: string
+  note: string
+}

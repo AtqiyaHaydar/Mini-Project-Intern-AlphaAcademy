@@ -1,5 +1,5 @@
 import { truncateDescription } from "@/lib/utils"
-import { IBookCardProps } from "@/types"
+import { IBookCardProps, IBookCardState } from "@/types"
 import Image from "next/image"
 import PlusIcon from "./icons/PlusIcon"
 import { usePathname } from "next/navigation"
@@ -31,17 +31,33 @@ const BookCard = ({
   const pathname = usePathname()
   const user = useUser()
 
-  const [note, setNote] = useState<string>("")
+  const [collection, setCollection] = useState<IBookCardState>({
+    author: author,
+    title: title,
+    categories: categories,
+    description: description,
+    thumbnail: thumbnail,
+    note: ""
+  })
 
   const truncatedTitle = truncateDescription(title)
   const truncatedAuthor = truncateDescription(author)
   const truncatedDescription = truncateDescription(description)
 
   const addToCollection = () => {
+    
+
     toast({
       title: "Book Added",
       description: "The book successfully added to your collection.",
     })
+  }
+
+  const handleChangeNote = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setCollection(prevState => ({
+      ...prevState,
+      note: e.target.value
+    }))
   }
 
   return (
@@ -79,9 +95,9 @@ const BookCard = ({
                   <Input 
                     id="note"
                     type="text"
-                    defaultValue={note}
+                    defaultValue={collection.note}
                     placeholder="Write a note about this book"
-                    onChange={(e) => setNote(e.target.value)}
+                    onChange={handleChangeNote}
                     className="focus-visible:ring-transparent"
                   />
                 </div>
