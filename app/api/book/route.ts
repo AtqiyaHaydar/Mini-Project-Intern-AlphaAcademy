@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_KEY = 'AIzaSyBwFQkRdQANGehKQ0Ts52JLVY3GAGEup64'
+const API_KEY = process.env.NEXT_PUBLIC_GOOGLE_BOOKS_API_KEY;
 
 export const searchBooks = async (query: string) => {
   try {
