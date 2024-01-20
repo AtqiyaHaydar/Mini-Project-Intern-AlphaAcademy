@@ -4,14 +4,21 @@ import Image from "next/image"
 import PlusIcon from "./icons/PlusIcon"
 import { usePathname } from "next/navigation"
 import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from "@/components/ui/tooltip"
+  Dialog,
+  DialogClose,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog"
+
 import { useToast } from "./ui/use-toast"
 import { Button } from "./ui/button"
 import { SignedIn, useUser } from "@clerk/nextjs"
+import { useState } from "react"
+import { Input } from "./ui/input"
 
 const BookCard = ({ 
   author, 
@@ -24,11 +31,13 @@ const BookCard = ({
   const pathname = usePathname()
   const user = useUser()
 
+  const [note, setNote] = useState<string>("")
+
   const truncatedTitle = truncateDescription(title)
   const truncatedAuthor = truncateDescription(author)
   const truncatedDescription = truncateDescription(description)
 
-  const addCollection = () => {
+  const addToCollection = () => {
     toast({
       title: "Book Added",
       description: "The book successfully added to your collection.",
@@ -43,22 +52,55 @@ const BookCard = ({
         className="absolute top-4 right-4 z-10 flex items-center justify-center rounded-sm text-white cursor-pointer "
         >
           <SignedIn>
-            <TooltipProvider>
-              <Tooltip>
-                <TooltipTrigger>
-                  <Button 
-                    variant={"default"}
-                    onClick={addCollection}
-                    size="sm"
-                  >
-                    <PlusIcon />
-                  </Button>
-                </TooltipTrigger>
-                <TooltipContent>
-                  <p className="bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent font-extrabold p-2 rounded-sm transition-all">Add To Collection</p>
-                </TooltipContent>
-              </Tooltip>
-            </TooltipProvider>
+            <Dialog>
+              <DialogTrigger asChild>
+                <Button 
+                  variant={"default"}
+                  size="sm"
+                >
+                  <PlusIcon />
+                </Button>
+              </DialogTrigger>
+              <DialogContent>
+                <DialogHeader>
+                  <DialogTitle>
+                    <span className="bg-gradient-to-r from-purple-500 to-pink-500 bg-clip-text text-transparent font-bold">
+                      Add to Collection
+                    </span>
+                  </DialogTitle>
+                  <DialogDescription>
+                    Write a note about this book
+                  </DialogDescription>
+                </DialogHeader>
+                <div className="flex flex-col gap-3">
+                  <label htmlFor="note" className="text-left">
+                    Note
+                  </label>
+                  <Input 
+                    id="note"
+                    type="text"
+                    defaultValue={note}
+                    placeholder="Write a note about this book"
+                    onChange={(e) => setNote(e.target.value)}
+                    className="focus-visible:ring-transparent"
+                  />
+                </div>
+                <DialogFooter>
+                  <DialogClose asChild>
+                    <Button 
+                      className="hover:bg-gradient-to-r from-purple-500 to-pink-500 transition-all"
+                      onClick={addToCollection}
+                      type="submit"
+                    >
+                      Add to Collection
+                    </Button>
+                  </DialogClose>
+                </DialogFooter>
+              </DialogContent>
+            </Dialog>
+          
+
+             
           </SignedIn>
         </div>
       )}
