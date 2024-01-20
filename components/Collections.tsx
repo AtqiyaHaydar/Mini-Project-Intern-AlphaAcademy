@@ -15,8 +15,8 @@ const Collections = () => {
     const handleSearch = async () => {
       try {
         const response = await searchBooks(query)
-        setBooks(response) 
-        console.log(response)
+        const validResponse = Array.isArray(response) ? response : [];
+        setBooks(validResponse) 
       } catch (error) {
         console.log('Error during book search:', error)
       }
@@ -25,13 +25,26 @@ const Collections = () => {
     handleSearch();
   }, [query])
 
+  if (books.length === 0) return (
+    <div className='wrapper mt-4 flex flex-col items-center gap-12 mb-12'>
+      <Input
+        placeholder="Search books"
+        value={query}
+        onChange={(e) => setQuery(e.target.value)}
+        className="rounded-full w-[75vw] max-w-[650px] px-3 py-6 focus-visible:ring-purple-300"
+      />
+
+      <p className="text-2xl text-center font-semibold my-12 bg-gradient-to-r from-purple-700 to-pink-700 bg-clip-text text-transparent">No results found</p>
+    </div>
+  )
+
   return (
     <div className='wrapper mt-4 flex flex-col items-center gap-12 mb-12'>
       <Input
         placeholder="Search books"
         value={query}
         onChange={(e) => setQuery(e.target.value)}
-        className="rounded-full w-[75vw] max-w-[650px] px-3 py-6"
+        className="rounded-full w-[75vw] max-w-[650px] px-3 py-6 focus-visible:ring-purple-300"
       />
 
       <ul className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8">
