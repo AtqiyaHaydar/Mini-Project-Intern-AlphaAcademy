@@ -14,4 +14,4 @@ MongoDB Database: Book collection data is persistently stored using MongoDB.
 • TypeScript - Enhances code security and clarity with static typing.\
 • Tailwind CSS - CSS design framework allowing flexible and easily customizable styling.\
 • Clerk - Powerful and easily implementable user authentication management service.\
-• Shadcn UI - Charming and user-friendly React component library for an appealing UI.\
+• Shadcn UI - Charming and user-friendly React component library for an appealing UI.
