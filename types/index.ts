@@ -10,3 +10,11 @@ export interface IBook {
     }
   }
 }
+
+export interface IBookCardProps {
+  author: string
+  title: string
+  categories: string
+  description: string
+  thumbnail: string
+}

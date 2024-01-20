@@ -1,10 +1,11 @@
 "use client"
 
 import { useEffect, useState } from "react"
-import { searchBooks } from "@/app/api/route"
+import { searchBooks } from "@/app/api/book/route"
 import { Input } from "./ui/input"
 import { IBook } from "@/types/index"
 import Image from "next/image"
+import BookCard from "./BookCard"
 
 const Collections = () => {
   const [query, setQuery] = useState("")
@@ -35,20 +36,21 @@ const Collections = () => {
 
       <ul className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
         {books.map((book) => {
+          const author = book.volumeInfo.authors ? book.volumeInfo.authors[0] : "Unknown Author"
+          const title = book.volumeInfo.title ? book.volumeInfo.title : "Unknown Title"
+          const categories = book.volumeInfo.categories ? book.volumeInfo.categories[0] : "Unknown Category"
+          const description = book.volumeInfo.description ? book.volumeInfo.description : "No description available"
+          const thumbnail = book.volumeInfo.imageLinks ? book.volumeInfo.imageLinks.thumbnail : "https://via.placeholder.com/150"
+
           return (
             <li key={book.id}>
-              <p>{book.volumeInfo.authors[0]}</p>
-              <p>{book.volumeInfo.title}</p>
-              <p>{book.volumeInfo.categories[0]}</p>
-              <p>{book.volumeInfo.description}</p>
-              {book.volumeInfo.imageLinks && (
-                <Image 
-                  src={book.volumeInfo.imageLinks.thumbnail}
-                  alt="Sampul Buku"
-                  width={100}
-                  height={100}
-                />
-              )}
+              <BookCard 
+                author={author}
+                title={title}
+                categories={categories}
+                description={description}
+                thumbnail={thumbnail}
+              />
             </li>
           )
         })}
