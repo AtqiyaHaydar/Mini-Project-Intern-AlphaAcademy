@@ -10,8 +10,8 @@ User Authentication: Utilize Clerk for secure and easy-to-integrate user authent
 MongoDB Database: Book collection data is persistently stored using MongoDB.
 
 ## Tech Stack
-Next.js - React framework for production-optimized web applications.
-TypeScript - Enhances code security and clarity with static typing.
-Tailwind CSS - CSS design framework allowing flexible and easily customizable styling.
-Clerk - Powerful and easily implementable user authentication management service.
-Shadcn UI - Charming and user-friendly React component library for an appealing UI.
+• Next.js - React framework for production-optimized web applications.\
+• TypeScript - Enhances code security and clarity with static typing.\
+• Tailwind CSS - CSS design framework allowing flexible and easily customizable styling.\
+• Clerk - Powerful and easily implementable user authentication management service.\
+• Shadcn UI - Charming and user-friendly React component library for an appealing UI.\
