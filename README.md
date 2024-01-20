@@ -1,36 +1,17 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+## MiniProject - Book Collection Application
 
-## Getting Started
+MiniProject is an application that allows users to create and manage collections of books online using the Google Books API. With a user-friendly interface, MiniProject enables users to easily add, edit, and remove books from their collections.
 
-First, run the development server:
+## Key Features
+Search and Automatic Addition: Search and add books to your collection effortlessly using the Google Books API.
+Collection Management: Add, edit, and delete books within your collection.
+Responsive User Interface: Designed using Tailwind CSS and Shadcn UI to provide an intuitive and engaging user experience.
+User Authentication: Utilize Clerk for secure and easy-to-integrate user authentication management.
+MongoDB Database: Book collection data is persistently stored using MongoDB.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## Tech Stack
+Next.js - React framework for production-optimized web applications.
+TypeScript - Enhances code security and clarity with static typing.
+Tailwind CSS - CSS design framework allowing flexible and easily customizable styling.
+Clerk - Powerful and easily implementable user authentication management service.
+Shadcn UI - Charming and user-friendly React component library for an appealing UI.
