@@ -7,7 +7,7 @@ import { IBook } from "@/types/index"
 import Image from "next/image"
 import BookCard from "./BookCard"
 
-const Collections = () => {
+const Collections = ({ userId }: { userId: string}) => {
   const [query, setQuery] = useState("")
   const [books, setBooks] = useState<IBook[]>([])
 
@@ -58,6 +58,7 @@ const Collections = () => {
           return (
             <li key={book.id}>
               <BookCard 
+                userId={userId}
                 author={author}
                 title={title}
                 categories={categories}

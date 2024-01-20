@@ -1,3 +1,5 @@
+"use client"
+
 import { truncateDescription } from "@/lib/utils"
 import { IBookCardProps, IBookCardState } from "@/types"
 import Image from "next/image"
@@ -19,8 +21,10 @@ import { Button } from "./ui/button"
 import { SignedIn, useUser } from "@clerk/nextjs"
 import { useState } from "react"
 import { Input } from "./ui/input"
+import { createCollection } from "@/lib/actions/book.action"
 
 const BookCard = ({ 
+  userId,
   author, 
   title, 
   categories, 
@@ -29,9 +33,9 @@ const BookCard = ({
 }: IBookCardProps) => {
   const { toast } = useToast()
   const pathname = usePathname()
-  const user = useUser()
 
   const [collection, setCollection] = useState<IBookCardState>({
+    userId: userId,
     author: author,
     title: title,
     categories: categories,
@@ -40,13 +44,23 @@ const BookCard = ({
     note: ""
   })
 
-  const truncatedTitle = truncateDescription(title)
-  const truncatedAuthor = truncateDescription(author)
-  const truncatedDescription = truncateDescription(description)
+  const truncatedTitle: string = truncateDescription(title)
+  const truncatedAuthor: string = truncateDescription(author)
+  const truncatedDescription: string = truncateDescription(description)
 
-  const addToCollection = () => {
+  const addToCollection = async () => {
+    const collectionData: IBookCardState = {
+      userId: collection.userId,
+      author: collection.author,
+      title: collection.title,
+      categories: collection.categories,
+      description: collection.description,
+      thumbnail: collection.thumbnail,
+      note: collection.note
+    }
+
+    await createCollection(collectionData)
     
-
     toast({
       title: "Book Added",
       description: "The book successfully added to your collection.",
@@ -63,7 +77,7 @@ const BookCard = ({
   return (
     <div className="border-2 border-slate-200 min-w-[200px] min-h-[400px] rounded-lg shadow-md px-4 py-2 flex flex-col items-center gap-4 hover:scale-105 transition-all">
       
-      {user && pathname === "/" && (
+      {pathname === "/" && (
         <div 
         className="absolute top-4 right-4 z-10 flex items-center justify-center rounded-sm text-white cursor-pointer "
         >
@@ -115,8 +129,6 @@ const BookCard = ({
               </DialogContent>
             </Dialog>
           
-
-             
           </SignedIn>
         </div>
       )}

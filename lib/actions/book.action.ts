@@ -5,6 +5,7 @@ import { connectToDatabase } from "../database"
 import Book from "../database/models/book.model"
 
 export const createCollection = async ({
+  userId,
   author,
   title,
   categories,
@@ -16,6 +17,7 @@ export const createCollection = async ({
     await connectToDatabase()
 
     const newCollection = await Book.create({
+      userId,
       author,
       title,
       categories,
@@ -57,6 +59,22 @@ export const updateNote = async (id: string, note:string) => {
     )
 
     return JSON.parse(JSON.stringify(updatedNote))
+  } catch (error: any) {
+    throw new Error(error)
+  }
+}
+
+export const getCollectionByUser = async ({
+  userId
+}: {
+  userId: string
+}) => {
+  try {
+    await connectToDatabase()
+
+    const myCollection = await Book.find({ userId })
+
+    return JSON.parse(JSON.stringify(myCollection))
   } catch (error: any) {
     throw new Error(error)
   }

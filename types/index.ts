@@ -1,3 +1,5 @@
+import { Schema } from "mongoose"
+
 export interface IBook {
   id: string
   volumeInfo: {
@@ -12,6 +14,7 @@ export interface IBook {
 }
 
 export interface IBookCardProps {
+  userId: string
   author: string
   title: string
   categories: string
@@ -20,6 +23,7 @@ export interface IBookCardProps {
 }
 
 export interface IBookCardState {
+  userId: string
   author: string
   title: string
   categories: string
