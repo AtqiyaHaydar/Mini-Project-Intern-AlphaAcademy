@@ -4,6 +4,7 @@ import Link from "next/link"
 import { SignedIn, SignedOut, UserButton } from "@clerk/nextjs"
 import { Button } from "./ui/button"
 import Nav from "./Nav"
+import MobileNav from "./MobileNav"
 
 const Header = () => {
   return (
@@ -27,7 +28,10 @@ const Header = () => {
 
         <SignedIn>
           <Nav />
-          <UserButton afterSignOutUrl="/" />
+          <div className="hidden md:flex">
+            <UserButton afterSignOutUrl="/" />
+          </div>
+          <MobileNav />
         </SignedIn>
       </div>      
     </header>

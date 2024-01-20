@@ -15,7 +15,7 @@ const Nav = () => {
             <li key={item.path}>
               <Link href={item.path}>
                 <span
-                  className={`${isActive && "bg-gradient-to-r from-purple-500 to-pink-500 text-transparent bg-clip-text font-extrabold text-xl"} transition-all hover:text-xl`}
+                  className={`${isActive && "bg-gradient-to-r from-purple-500 to-pink-500 text-transparent bg-clip-text font-extrabold text-xl"} transition-all hover:text-purple-500`}
                 >
                   {item.label}
                 </span>
