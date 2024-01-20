@@ -1,6 +1,6 @@
-Nama : Atqiya Haydar Luqman
-Asal Instansi : Institut Teknologi Bandung
-Divisi : Front End
+Nama : Atqiya Haydar Luqman\
+Asal Instansi : Institut Teknologi Bandung\
+Divisi : Front End\
 
 ## MiniProject - Book Collection Application
 
