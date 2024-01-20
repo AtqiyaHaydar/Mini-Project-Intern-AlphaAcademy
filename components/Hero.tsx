@@ -1,5 +1,5 @@
 import Image from "next/image"
-import Library from "@/public/library.jpg"
+import Library from "@/public/library1.svg"
 
 const Hero = () => {
   return (
@@ -8,7 +8,7 @@ const Hero = () => {
         <Image 
           src={Library}
           alt="My Book Collection"
-          className="w-full max-h-[550px] bg-cover rounded-lg"
+          className="rounded-lg min-w-full object-cover h-[350px]"
         />
       </div>
     </div>
