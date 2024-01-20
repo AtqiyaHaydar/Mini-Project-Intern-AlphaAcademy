@@ -26,7 +26,7 @@ const Collections = () => {
   }, [query])
 
   return (
-    <div className='wrapper mt-4'>
+    <div className='wrapper mt-4 flex flex-col items-center gap-12 mb-12'>
       <Input
         placeholder="Search books"
         value={query}
@@ -34,7 +34,7 @@ const Collections = () => {
         className="rounded-full w-[75vw] max-w-[650px] px-3 py-6"
       />
 
-      <ul className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+      <ul className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8">
         {books.map((book) => {
           const author = book.volumeInfo.authors ? book.volumeInfo.authors[0] : "Unknown Author"
           const title = book.volumeInfo.title ? book.volumeInfo.title : "Unknown Title"
