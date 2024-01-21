@@ -20,7 +20,7 @@ const MobileNav = () => {
 
   return (
     <div className="md:hidden flex flex-row gap-6 items-center justify-center">
-      <UserButton />
+      <UserButton afterSignOutUrl="/" />
       <Sheet>
         <SheetTrigger>
           <BarIcon />
