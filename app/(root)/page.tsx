@@ -5,7 +5,7 @@ import { currentUser } from "@clerk/nextjs"
 export default async function Page() {
   const user = await currentUser()
 
-  let userId = user.id as string
+  const userId = user?.id as string
 
   return (
     <div className="min-h-screen flex flex-col gap-6">

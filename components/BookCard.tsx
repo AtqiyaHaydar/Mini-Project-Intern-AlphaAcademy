@@ -15,15 +15,17 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog"
-
+import { useRouter } from "next/navigation"
 import { useToast } from "./ui/use-toast"
 import { Button } from "./ui/button"
 import { SignedIn, useUser } from "@clerk/nextjs"
 import { useState } from "react"
 import { Input } from "./ui/input"
-import { createCollection } from "@/lib/actions/book.action"
+import { createCollection, deleteCollection } from "@/lib/actions/book.action"
+import MinusIcon from "./icons/MinusIcon"
 
-const BookCard = ({ 
+const BookCard = ({
+  id,
   userId,
   author, 
   title, 
@@ -31,10 +33,12 @@ const BookCard = ({
   description, 
   thumbnail 
 }: IBookCardProps) => {
+  const router = useRouter()
   const { toast } = useToast()
   const pathname = usePathname()
 
   const [collection, setCollection] = useState<IBookCardState>({
+    id: id,
     userId: userId,
     author: author,
     title: title,
@@ -50,6 +54,7 @@ const BookCard = ({
 
   const addToCollection = async () => {
     const collectionData: IBookCardState = {
+      id: collection.id,
       userId: collection.userId,
       author: collection.author,
       title: collection.title,
@@ -65,6 +70,19 @@ const BookCard = ({
       title: "Book Added",
       description: "The book successfully added to your collection.",
     })
+
+    router.refresh()
+  }
+
+  const deleteFromCollection = async () => {
+    await deleteCollection(collection.id)
+
+    toast({
+      title: "Book Deleted",
+      description: "The book successfully deleted from your collection.",
+    })
+
+    router.refresh()
   }
 
   const handleChangeNote = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -124,6 +142,53 @@ const BookCard = ({
                     >
                       Add to Collection
                     </Button>
+                  </DialogClose>
+                </DialogFooter>
+              </DialogContent>
+            </Dialog>
+          
+          </SignedIn>
+        </div>
+      )}
+
+      {pathname === "/collection" && (
+        <div 
+        className="absolute top-4 right-4 z-10 flex items-center justify-center rounded-sm text-white cursor-pointer "
+        >
+          <SignedIn>
+            <Dialog>
+              <DialogTrigger asChild>
+                <Button 
+                  variant={"default"}
+                  size="sm"
+                >
+                  <MinusIcon />
+                </Button>
+              </DialogTrigger>
+              <DialogContent>
+                <DialogHeader>
+                  <DialogTitle>
+                    <span className="bg-gradient-to-r from-red-500 to-orange-500 bg-clip-text text-transparent font-bold">
+                      Delete from Collection
+                    </span>
+                  </DialogTitle>
+                  <DialogDescription>
+                    Are you sure you want to delete this book from your collection?
+                  </DialogDescription>
+                </DialogHeader>
+                <DialogFooter>
+                  <DialogClose asChild>
+                    <div className="flex flex-row gap-4 items-center justify-center">
+                      <Button variant={"ghost"}>
+                        Cancel
+                      </Button>
+                      <Button 
+                        variant={"destructive"}
+                        onClick={deleteFromCollection}
+                      >
+                        Yes, Im Sure!
+                      </Button>
+                    </div>
                   </DialogClose>
                 </DialogFooter>
               </DialogContent>

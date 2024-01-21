@@ -58,6 +58,7 @@ const Collections = ({ userId }: { userId: string}) => {
           return (
             <li key={book.id}>
               <BookCard 
+                id={book.id}
                 userId={userId}
                 author={author}
                 title={title}

@@ -8,7 +8,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <main className="flex flex-col min-h-screen">
+    <main className="flex flex-col justify-between min-h-screen">
       <Header />
       {children}
       <Toaster />

@@ -14,6 +14,7 @@ export interface IBook {
 }
 
 export interface IBookCardProps {
+  id: string
   userId: string
   author: string
   title: string
@@ -23,7 +24,18 @@ export interface IBookCardProps {
 }
 
 export interface IBookCardState {
+  id: string
   userId: string
+  author: string
+  title: string
+  categories: string
+  description: string
+  thumbnail: string
+  note: string
+}
+
+export interface IBookCollection {
+  _id: string
   author: string
   title: string
   categories: string

@@ -3,6 +3,7 @@
 import { IBookCardState } from "@/types"
 import { connectToDatabase } from "../database"
 import Book from "../database/models/book.model"
+import { revalidatePath } from "next/cache"
 
 export const createCollection = async ({
   userId,
@@ -37,6 +38,7 @@ export const deleteCollection = async (id: string) => {
     await connectToDatabase()
 
     const deletedCollection = await Book.findByIdAndDelete(id)
+    if (deletedCollection) revalidatePath('/collection')
   } catch (error: any) {
     throw new Error(error)
   }
