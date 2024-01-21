@@ -5,4 +5,10 @@ export default {
       'via.placeholder.com'
     ],
   },
+  exportPathMap: function () {
+    return {
+      '/': { page: '/' },
+      '/collection' : { page: '/collection' },
+    }
+  }
 };
