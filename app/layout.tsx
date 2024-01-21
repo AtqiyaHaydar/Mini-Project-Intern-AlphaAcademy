@@ -11,6 +11,9 @@ const poppins = Poppins({
 export const metadata: Metadata = {
   title: "My Collection",
   description: "Mini Project Alpha Academy",
+  icons: {
+    icon: "../public/logo.svg"
+  }
 };
 
 export default function RootLayout({
