@@ -1,7 +1,7 @@
 "use client"
 
 import { useEffect, useState } from "react"
-import searchBooks from "@/app/api/book/route"
+import { searchBooks } from "@/app/api/book/route"
 import { Input } from "./ui/input"
 import { IBook } from "@/types/index"
 import Image from "next/image"
